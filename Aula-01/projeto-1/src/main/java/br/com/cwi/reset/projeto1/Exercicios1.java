@@ -41,7 +41,7 @@ public class Exercicios1 {
         String inverted = "";
 
         for (int i = palavra.length() - 1; i >= 0; i--) {
-            inverted += palavra.charAt(i)
+            inverted += palavra.charAt(i);
         }
         return inverted;
     }
