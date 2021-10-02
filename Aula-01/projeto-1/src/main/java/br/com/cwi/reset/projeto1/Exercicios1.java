@@ -1,24 +1,49 @@
 package br.com.cwi.reset.projeto1;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercicios1 {
 
     public Integer somarLista(List<Integer> numeros) {
-        return 10;
+        int sum = 0;
+        for (int i: numeros){
+            sum += i;
+        }
+        return sum;
     }
 
     public Double calcularMedia(List<Integer> numeros) {
-        return 10.0;
+        double sum = 0;
+        for (int i: numeros){
+            sum += i;
+        }
+        return sum / numeros.size();
     }
 
     public Integer obterMaiorNumero(List<Integer> numeros) {
-        return 10;
+
+        int biggest = numeros.get(0);
+
+        for (int i : numeros) {
+            if (i > biggest) {
+                biggest = i;
+            }
+        }
+
+        return biggest;
+
     }
 
     public String obterPalavraInvertida(String palavra) {
-        return "edcba";
+
+        String inverted = "";
+
+        for (int i = palavra.length() - 1; i >= 0; i--) {
+            inverted += palavra.charAt(i)
+        }
+        return inverted;
     }
 
     public List<Integer> ordenarLista(List<Integer> numeros) {
