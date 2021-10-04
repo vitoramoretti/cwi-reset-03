@@ -2,16 +2,26 @@
 public class Registradora {
 
     public static void main(String[] args) {
-        primeiroBug(); // crianção do horario de funcionamento estava errado, gerando sempre um horario menor que 16.
-                       // o item sanduiche estava com nome de sanduba
 
-//        segundoBug(); // tipo de dado em quantidade estava errado
+        System.out.println("##### Bug 1 ##### FIXED");
+        // crianção do horario de funcionamento estava errado, gerando sempre um horario menor que 16.
+        // o item sanduiche estava com nome de sanduba
+        primeiroBug();
 
-//        terceiroBug();
-//
+        System.out.println("##### Bug 2 ##### FIXED");
+        // tipo de dado em quantidade estava errado
+        segundoBug();
+
+        System.out.println("##### Bug 3 ##### FIXED");
+        // palavra café estava com acento no item
+        terceiroBug();
+
+        System.out.println("##### Bug 4 #####");
 //        quartoBug();
+        System.out.println("##### Bug 5 #####");
 //
 //        quintoBug();
+        System.out.println("##### Bug 6 #####");
 //
 //        sextoBug();
     }

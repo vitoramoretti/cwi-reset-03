@@ -18,7 +18,7 @@ public class RelacaoPesoPreco {
             System.out.println("Preço do leite: R$ " + precoTotal);
         }
 
-        if ("café".equals(item)) {
+        if ("cafe".equals(item)) {
             precoTotal = 9.56 * qtd;
             System.out.println("Preço do café: R$ " + precoTotal);
         }
