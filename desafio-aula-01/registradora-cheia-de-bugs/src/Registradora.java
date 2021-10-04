@@ -4,8 +4,7 @@ public class Registradora {
     public static void main(String[] args) {
 
         System.out.println("##### Bug 1 ##### FIXED");
-        // crianção do horario de funcionamento estava errado, gerando sempre um horario menor que 16.
-        // o item sanduiche estava com nome de sanduba
+        // criação do horario de funcionamento estava errado, gerando sempre um horario menor que 16.
         primeiroBug();
 
         System.out.println("##### Bug 2 ##### FIXED");
@@ -16,14 +15,16 @@ public class Registradora {
         // palavra café estava com acento no item
         terceiroBug();
 
-        System.out.println("##### Bug 4 #####");
-//        quartoBug();
-        System.out.println("##### Bug 5 #####");
-//
-//        quintoBug();
+        System.out.println("##### Bug 4 ##### FIXED");
+        // o item sanduiche estava com nome de sanduba
+        quartoBug();
+
+        System.out.println("##### Bug 5 ##### FIXED");
+        // foi resolvido com a resolução do tipo int para double
+        quintoBug();
+
         System.out.println("##### Bug 6 #####");
-//
-//        sextoBug();
+        sextoBug();
     }
 
     private static double registrarItem(String item, int quantidade) {

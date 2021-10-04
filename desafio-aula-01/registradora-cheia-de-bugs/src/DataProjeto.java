@@ -30,6 +30,7 @@ public class DataProjeto {
     public static DataProjeto criarDataComCozinhaEncerradaSemDiaUtil() {
         Random random = new Random();
         int hora = random.nextInt(24);
+        System.out.println(hora);
         int minuto = random.nextInt(60);
 
         return new DataProjeto(false, hora, minuto);
