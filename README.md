@@ -6,8 +6,8 @@ Welcome to my CWI RESET lv2 repo!
 Here I'll be putting all the relevant codes developed during the "RESET" program.
 It's mainly for personal record and for the program instructors to have access to the codes.
 
-# Class 1:
-## October 2nd - "Git, Java Básico e configuração da máquina"
+# Class 1 - "Git, Java Básico e configuração da máquina"
+<strong>. October 2nd </strong>
 
 - Group exercise for getting to know each other
 - Git config
@@ -15,14 +15,14 @@ It's mainly for personal record and for the program instructors to have access t
 - Logic exercises with Java
 - Challenge #1 - Debug an app
 
-# Class 2:
-## October 9th - "Revisão de OO e Java Avançado"
+# Class 2 - "Revisão de OO e Java Avançado"
+<strong>. October 9th </strong>
 
-# Class 3:
-## October 16th - "Arquitetura WEB e APIS"
+# Class 3 - "Arquitetura WEB e APIS"
+<strong>. October 16th </strong>
 
-# Class 4:
-## October 23rd - "Integração com banco"
+# Class 4 - "Integração com banco"
+<strong>. October 23rd </strong>
 
-# Class 5:
-## October 30th - "Testes unitários com jUnit"
+# Class 5 - "Testes unitários com jUnit"
+<strong>. October 30th </strong>
