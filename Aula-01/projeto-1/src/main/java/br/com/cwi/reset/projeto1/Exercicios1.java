@@ -1,7 +1,6 @@
 package br.com.cwi.reset.projeto1;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Exercicios1 {
@@ -47,7 +46,22 @@ public class Exercicios1 {
     }
 
     public List<Integer> ordenarLista(List<Integer> numeros) {
-        return Arrays.asList(1, 2, 3, 4, 5);
+
+        Integer[] nums = numeros.toArray(new Integer[numeros.size()]);
+        int temp = 0;
+
+        for (int i = 0; i < numeros.size() - 1; i++) {
+            for (int j = i + 1; j < numeros.size(); j++) {
+                if(nums[j] < nums[i]) {
+                    temp = nums[j];
+                    nums[j] = nums[i];
+                    nums[i] = temp;
+                }
+            }
+        }
+
+
+        return Arrays.asList(nums);
     }
 }
 
