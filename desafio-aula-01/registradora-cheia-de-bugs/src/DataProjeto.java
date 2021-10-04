@@ -11,8 +11,10 @@ public class DataProjeto {
 
     public static DataProjeto criarDataComCozinhaFuncionando() {
         Random random = new Random();
-        int hora = random.nextInt(10) + 6;
-        int minuto = hora == 16 ? random.nextInt(40) : random.nextInt(60);
+        int hora = random.nextInt(11) + 6; // Gera horário entre 6 e 16
+        int minuto = hora == 16 ? random.nextInt(40) : random.nextInt(60); // Se o horario for 16, minuto é max 40
+
+        System.out.println("Cozinha esta funcionando - Horario: " + hora + ":" + minuto);
 
         return new DataProjeto(true, hora, minuto);
     }

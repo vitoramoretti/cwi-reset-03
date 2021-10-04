@@ -2,9 +2,10 @@
 public class Registradora {
 
     public static void main(String[] args) {
-//        primeiroBug();
+        primeiroBug(); // crianção do horario de funcionamento estava errado, gerando sempre um horario menor que 16.
+                       // o item sanduiche estava com nome de sanduba
 
-        segundoBug(); // tipo de dado em quantidade estava errado
+//        segundoBug(); // tipo de dado em quantidade estava errado
 
 //        terceiroBug();
 //
