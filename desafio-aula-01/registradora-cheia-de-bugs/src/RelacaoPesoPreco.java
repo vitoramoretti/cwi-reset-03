@@ -5,28 +5,27 @@ public class RelacaoPesoPreco {
 
         if ("pao".equals(item)) {
             precoTotal = 12.75 * (qtd * 60 / 1000);
-            System.out.println("Preço do pão: R$ " + precoTotal); // Mensagem temporária
+            ItensPorQuantidade.pao -= (qtd * 60);
         }
 
         if ("torta".equals(item)) {
             precoTotal = 96.00 * (qtd / 16);
-            System.out.println("Preço da torta: R$ " + precoTotal);
+            ItensPorQuantidade.torta -= qtd;
+
         }
 
         if ("leite".equals(item)) {
             precoTotal = 4.48 * qtd;
-            System.out.println("Preço do leite: R$ " + precoTotal);
+            ItensPorQuantidade.leite -= qtd;
         }
 
         if ("cafe".equals(item)) {
             precoTotal = 9.56 * qtd;
-            System.out.println("Preço do café: R$ " + precoTotal);
+            ItensPorQuantidade.cafe -= qtd;
         }
 
         if ("sanduiche".equals(item)) {
             precoTotal = 4.5 * qtd;
-            System.out.println("Preço do sanduiche R$ " + precoTotal);
-
         }
 
         return precoTotal;
