@@ -30,7 +30,6 @@ public class DataProjeto {
     public static DataProjeto criarDataComCozinhaEncerradaSemDiaUtil() {
         Random random = new Random();
         int hora = random.nextInt(24);
-        System.out.println(hora);
         int minuto = random.nextInt(60);
 
         return new DataProjeto(false, hora, minuto);
@@ -43,7 +42,7 @@ public class DataProjeto {
     }
 
     public static boolean cozinhaEmFuncionamento() {
-        boolean isHorarioFuncionamento = hora > 6 && hora <= 16;
+        boolean isHorarioFuncionamento = hora >= 6 && hora <= 16; // Horário entre 6 e 16
         boolean isMinutoFuncionamento = hora == 16 ? minuto <= 40 : minuto < 60;
 
         return diaUtil && isHorarioFuncionamento && isMinutoFuncionamento;
