@@ -15,6 +15,17 @@ It's mainly for personal record and for the program instructors to have access t
 - Logic exercises with Java
 - Challenge #1 - Debug an app
 
+### Challenge 1 - "Debug a registering machine app"
+
+<p>I did this challenge in two steps. First I analyzed the code to understand what is it calling and made adjustments to get the correct output value in the outcome. <br>
+After that, it was time to implement and inventory logic that subtracted the products and responded differently to clients according to their orders and what is in stock.</p>
+
+- Debug code
+- Unit testing
+- Implementation of inventory
+
+<em>Will watch the resolution of the challeng tonight and make any necessary changes to the code. (October 7th, 2021) </>
+
 # Class 2 - "Revisão de OO e Java Avançado"
 <strong>. October 9th </strong>
 
