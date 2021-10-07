@@ -24,7 +24,7 @@ After that, it was time to implement and inventory logic that subtracted the pro
 - Unit testing
 - Implementation of inventory
 
-<em>Will watch the resolution of the challeng tonight and make any necessary changes to the code. (October 7th, 2021) </>
+<em>Will watch the resolution of the challeng tonight and make any necessary changes to the code. (October 7th, 2021) </em>
 
 # Class 2 - "Revisão de OO e Java Avançado"
 <strong>. October 9th </strong>
