@@ -28,20 +28,32 @@ public class Registradora {
     }
 
     private static double registrarItem(String item, int quantidade) {
+
         double precoItem = RelacaoPesoPreco.retornaPrecoProduto(item, quantidade);
 
-        if (QuantidadeMinimaItem.precisaReposicao(item)) {
-            if ("pao".equals(item) || "sanduiche".equals(item) || "torta".equals(item)) {
-                if (!DataProjeto.cozinhaEmFuncionamento()) {
-                    System.out.println("Cozinha fechada!");
-                }
-                ReposicaoCozinha.reporItem(item);
-            }
 
-            if ("leite".equals(item) || "cafe".equals(item)) {
-                ReposicaoFornecedor.reporItem(item);
-            }
+            if (QuantidadeMinimaItem.precisaReposicao(item)) {
+                if ("pao".equals(item) || "sanduiche".equals(item) || "torta".equals(item)) {
+                    if (!DataProjeto.cozinhaEmFuncionamento()) {
+                        System.out.println("Cozinha fechada!");
+                        System.out.println("Reposição de " + item + " indisponível.");
+                        System.out.println("Quantidade restante em estoque: " + ItensPorQuantidade.inventory(item));
+                        precoItem = 0;
+                    }
+                    if (DataProjeto.cozinhaEmFuncionamento()) {
+                        ReposicaoCozinha.reporItem(item);
+                        System.out.println("Fazendo pedido para cozinha...");
+                    }
+                }
+                if ("leite".equals(item) || "cafe".equals(item)) {
+                    ReposicaoFornecedor.reporItem(item);
+                }
+
+
         }
+
+        ItensPorQuantidade.subtractInventory(item, quantidade);
+//        System.out.println("Quantidade em estoque: " + ItensPorQuantidade.inventory(item)); // For testing
 
         return precoItem;
     }

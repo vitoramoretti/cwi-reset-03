@@ -5,23 +5,18 @@ public class RelacaoPesoPreco {
 
         if ("pao".equals(item)) {
             precoTotal = 12.75 * (qtd * 60 / 1000);
-            ItensPorQuantidade.pao -= (qtd * 60);
         }
 
         if ("torta".equals(item)) {
             precoTotal = 96.00 * (qtd / 16);
-            ItensPorQuantidade.torta -= qtd;
-
         }
 
         if ("leite".equals(item)) {
             precoTotal = 4.48 * qtd;
-            ItensPorQuantidade.leite -= qtd;
         }
 
         if ("cafe".equals(item)) {
             precoTotal = 9.56 * qtd;
-            ItensPorQuantidade.cafe -= qtd;
         }
 
         if ("sanduiche".equals(item)) {
