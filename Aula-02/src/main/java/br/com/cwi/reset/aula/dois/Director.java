@@ -17,7 +17,7 @@ public class Director {
     public void printDirector() {
         System.out.println("Director - " + name);
         System.out.println("Age - " + age);
-        System.out.println("Gender - " + gender);
+        System.out.println("Gender - " + gender.getDescription());
     }
 
     public String getName() {

@@ -16,6 +16,6 @@ public class Actor {
     public void printActor() {
         System.out.println("Actor - " + name);
         System.out.println("Age - " + age);
-        System.out.println("Gender - " + gender);
+        System.out.println("Gender - " + gender.getDescription());
     }
 }
