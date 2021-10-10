@@ -18,11 +18,16 @@ public class Movie {
     }
 
 
-    public void playMovie() {
+    public void playMovie() throws RatingOutOfPatternException{
+        if (rating <= 0 || rating < 5) {
+            throw new RatingOutOfPatternException();
+        }
         System.out.println("Movie - " + name);
         System.out.println("Description - " + description);
         System.out.println("Duration - " + duration + "min.");
         System.out.println("Director - " + director.getName());
+        System.out.println("Rating - " + rating);
+
     }
 }
 
