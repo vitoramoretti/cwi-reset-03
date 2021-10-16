@@ -2,11 +2,11 @@ package br.com.cwi.reset.primeiroprojetospring.domain;
 
 public class Filme {
 
-    public String nome;
-    public String descricao;
-    public Integer duracao;
-    public Integer anoLancamento;
-    public Double avaliacao;
+    private String nome;
+    private String descricao;
+    private Integer duracao;
+    private Integer anoLancamento;
+    private Double avaliacao;
     private Diretor diretor;
 
     public Filme(String nome, String descricao, Integer duracao, Integer anoLancamento, Double avaliacao, Diretor diretor) {
@@ -25,4 +25,27 @@ public class Filme {
         System.out.println("Diretor: " + diretor.getNome());
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Integer getDuracao() {
+        return duracao;
+    }
+
+    public Integer getAnoLancamento() {
+        return anoLancamento;
+    }
+
+    public Double getAvaliacao() {
+        return avaliacao;
+    }
+
+    public Diretor getDiretor() {
+        return diretor;
+    }
 }
