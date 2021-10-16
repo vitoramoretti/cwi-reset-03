@@ -5,10 +5,13 @@ public class Movie {
     private String description;
     private Integer duration;
     private Integer releaseYear;
-    private Integer rating;
+    private Double rating;
     private Director director;
 
-    public Movie(String name, String description, Integer duration, Integer releaseYear, Integer rating, Director director) {
+    public Movie(String name, String description, Integer duration, Integer releaseYear, Double rating, Director director) throws RatingOutOfPatternException {
+        if (rating < 1 || rating < 5) {
+            throw new RatingOutOfPatternException();
+        }
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -18,10 +21,7 @@ public class Movie {
     }
 
 
-    public void playMovie() throws RatingOutOfPatternException{
-        if (rating <= 0 || rating < 5) {
-            throw new RatingOutOfPatternException();
-        }
+    public void playMovie() {
         System.out.println("Movie - " + name);
         System.out.println("Description - " + description);
         System.out.println("Duration - " + duration + "min.");
