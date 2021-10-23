@@ -1,7 +1,10 @@
 package br.com.cwi.reset.projeto1.controller;
 
 import br.com.cwi.reset.projeto1.domain.Pet;
-import org.springframework.http.ResponseEntity;
+import br.com.cwi.reset.projeto1.exception.PetJaExistenteException;
+import br.com.cwi.reset.projeto1.exception.PetNaoExistenteException;
+import br.com.cwi.reset.projeto1.service.PetService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,55 +15,33 @@ import java.util.List;
 @RequestMapping("/pet")
 public class PetController {
 
-    private static List<Pet> pets = new ArrayList<>();
+
+    private PetService petService = new PetService();
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pet savePet(@RequestBody Pet pet) throws PetJaExistenteException{
+        return petService.save(pet);
+    }
 
     @GetMapping
     public List<Pet> getPet() {
-        return pets;
+        return petService.findAll();
     }
 
-    @GetMapping("/{nome}")
-    public ResponseEntity<Pet> getById(@PathVariable String nome) {
-        Pet pet = buscarPetPeloNome(nome);
-
-        if (pet == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(pet);
+    @GetMapping("/{name}")
+    public Pet getByName(@PathVariable String name) throws PetNaoExistenteException {
+        return petService.findByName(name);
     }
 
-    private Pet buscarPetPeloNome(String nome) {
-        for (Pet pet : pets) {
-            if (pet.getNome().equals(nome)) {
-                return pet;
-            }
-        }
-        return null;
-    }
-
-    @PostMapping
-    public Pet cadastrarPet(@RequestBody Pet pet) {
-        pets.add(pet);
-        return pet;
+    @DeleteMapping("/{name}")
+    public void deletePet(@PathVariable String name) throws PetNaoExistenteException{
+        petService.delete(name);
     }
 
     @PutMapping
-    public void atualizarPet(@RequestBody Pet pet) {
-        Pet petCadastrado = buscarPetPeloNome(pet.getNome());
-
-        if (petCadastrado != null) {
-            pets.remove(petCadastrado);
-            pets.add(pet);
-        }
-    }
-
-    @DeleteMapping("/{nome}")
-    public void deletarPet(@PathVariable String nome) {
-        Pet pet = buscarPetPeloNome(nome);
-        if (pet != null) {
-            pets.remove(pet);
-        }
+    public Pet updatePet(@RequestBody Pet pet) throws PetNaoExistenteException{
+        return petService.update(pet);
     }
 
 }

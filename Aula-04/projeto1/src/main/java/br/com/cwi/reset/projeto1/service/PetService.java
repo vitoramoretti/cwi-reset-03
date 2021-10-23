@@ -1,50 +1,55 @@
 package br.com.cwi.reset.projeto1.service;
 
 import br.com.cwi.reset.projeto1.domain.Pet;
-import br.com.cwi.reset.projeto1.exception.FilmeJaExistenteException;
-import br.com.cwi.reset.projeto1.exception.FilmeNaoExistenteException;
 import br.com.cwi.reset.projeto1.exception.PetJaExistenteException;
 import br.com.cwi.reset.projeto1.exception.PetNaoExistenteException;
-import br.com.cwi.reset.projeto1.repository.FilmeRepository;
 import br.com.cwi.reset.projeto1.repository.PetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PetService {
 
-    private PetRepository repository = new PetRepository();
+    @Autowired
+    private PetRepository petRepository;
 
-    public Pet salvar(Pet pet) throws PetJaExistenteException {
-        Pet petJaExistente = repository.findByNome(pet.getNome());
+    public Pet save(Pet pet) throws PetJaExistenteException {
+        Pet savedPet = petRepository.findByName(pet.getNome());
 
-        if (petJaExistente != null) {
+        if (savedPet != null) {
             throw new PetJaExistenteException("Pet com o nome " + pet.getNome() + " já existe");
         }
-        repository.save(pet);
+        return petRepository.save(pet);
+    }
+
+    public List<Pet> findAll() {
+        return petRepository.findAll();
+    }
+
+    public Pet findByName(String name) throws PetNaoExistenteException {
+        Pet pet = petRepository.findByName(name);
+
+        if (pet == null) {
+            throw new PetNaoExistenteException("Pet com o nome " + name + " não existe");
+        }
         return pet;
     }
 
-    public List<Pet> listarTodos() {
-        return repository.findAll();
-    }
-
-    public Pet buscarPorNome(String nome) {
-        return repository.findByNome(nome);
-    }
-
-    public void deletar(String nomePet) throws PetNaoExistenteException {
-        Pet pet = buscarPorNome(nomePet);
+    public void delete(String petName) throws PetNaoExistenteException {
+        Pet pet = petRepository.findByName(petName);
         if (pet == null) {
-            throw new PetNaoExistenteException("Pet com o nome " + nomePet + " não existe");
+            throw new PetNaoExistenteException("Pet com o nome " + petName + " não existe");
         }
-        repository.delete(pet);
+        petRepository.delete(pet);
     }
 
-    public Pet atualizar(Pet pet) throws PetNaoExistenteException {
-        Pet petJaCadastrado = buscarPorNome(pet.getNome());
-        if (pet == null) {
+    public Pet update(Pet pet) throws PetNaoExistenteException {
+        Pet savedPet = petRepository.findByName(pet.getNome());
+        if (savedPet == null) {
             throw new PetNaoExistenteException("Pet com o nome " + pet.getNome() + " não existe");
         }
-        return repository.update(pet);
+        return petRepository.update(pet);
     }
 }
