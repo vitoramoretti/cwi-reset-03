@@ -1,4 +1,4 @@
-package br.com.cwi.reset.projeto1.repository;
+/* package br.com.cwi.reset.projeto1.repository;
 
 import br.com.cwi.reset.projeto1.domain.Pet;
 import org.springframework.stereotype.Repository;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PetRepositoryImpl implements PetRepository {
+public class PetRepositoryImpl implements PetRepositoryDb {
 
     private static List<Pet> pets = new ArrayList<>();
 
@@ -45,3 +45,6 @@ public class PetRepositoryImpl implements PetRepository {
         return pets;
     }
 }
+
+
+ */

@@ -1,0 +1,3 @@
+2021-10-23 16:28:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM PET PET PET[*]"; SQL statement:
+SELECT * FROM PET PET PET [42000-200]

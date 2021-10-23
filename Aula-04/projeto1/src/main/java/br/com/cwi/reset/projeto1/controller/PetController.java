@@ -4,6 +4,7 @@ import br.com.cwi.reset.projeto1.domain.Pet;
 import br.com.cwi.reset.projeto1.exception.PetExistsException;
 import br.com.cwi.reset.projeto1.exception.PetDoesNotExistException;
 import br.com.cwi.reset.projeto1.service.PetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,8 @@ import java.util.List;
 @RequestMapping("/pet")
 public class PetController {
 
-
-    private PetService petService = new PetService();
+    @Autowired
+    private PetService petService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -30,6 +31,11 @@ public class PetController {
     @GetMapping("/{name}")
     public Pet getByName(@PathVariable String name) throws PetDoesNotExistException {
         return petService.findByName(name);
+    }
+
+    @GetMapping("/especie/{nome}")
+    public List<Pet> findByEspecieNomeIgnoringCase(@PathVariable String nomeEspecie) {
+        return petService.findByEspecieNomeIgnoringCase(nomeEspecie);
     }
 
     @DeleteMapping("/{name}")
