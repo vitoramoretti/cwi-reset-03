@@ -1,14 +1,12 @@
 package br.com.cwi.reset.projeto1.controller;
 
 import br.com.cwi.reset.projeto1.domain.Pet;
-import br.com.cwi.reset.projeto1.exception.PetJaExistenteException;
-import br.com.cwi.reset.projeto1.exception.PetNaoExistenteException;
+import br.com.cwi.reset.projeto1.exception.PetExistsException;
+import br.com.cwi.reset.projeto1.exception.PetDoesNotExistException;
 import br.com.cwi.reset.projeto1.service.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -20,7 +18,7 @@ public class PetController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Pet savePet(@RequestBody Pet pet) throws PetJaExistenteException{
+    public Pet savePet(@RequestBody Pet pet) throws PetExistsException {
         return petService.save(pet);
     }
 
@@ -30,17 +28,17 @@ public class PetController {
     }
 
     @GetMapping("/{name}")
-    public Pet getByName(@PathVariable String name) throws PetNaoExistenteException {
+    public Pet getByName(@PathVariable String name) throws PetDoesNotExistException {
         return petService.findByName(name);
     }
 
     @DeleteMapping("/{name}")
-    public void deletePet(@PathVariable String name) throws PetNaoExistenteException{
+    public void deletePet(@PathVariable String name) throws PetDoesNotExistException {
         petService.delete(name);
     }
 
     @PutMapping
-    public Pet updatePet(@RequestBody Pet pet) throws PetNaoExistenteException{
+    public Pet updatePet(@RequestBody Pet pet) throws PetDoesNotExistException {
         return petService.update(pet);
     }
 
