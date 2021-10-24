@@ -34,8 +34,8 @@ public class PetController {
     }
 
     @GetMapping("/especie/{nome}")
-    public List<Pet> findByEspecieNomeIgnoringCase(@PathVariable String nomeEspecie) {
-        return petService.findByEspecieNomeIgnoringCase(nomeEspecie);
+    public List<Pet> findByEspecie(@PathVariable String nome) {
+        return petService.findByEspecie(nome);
     }
 
     @DeleteMapping("/{name}")

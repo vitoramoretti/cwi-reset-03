@@ -13,8 +13,8 @@ public interface PetRepositoryDb extends CrudRepository<Pet, Integer> {
 
     List<Pet> findAll();
 
-     List<Pet> findByIdade (Integer idade);
+    List<Pet> findByIdade (Integer idade);
 
-     List<Pet> findByEspecieNomeIgnoringCase (String nomeEspecie);
+    List<Pet> findByEspecieNomeIgnoringCase (String nome);
 
 }

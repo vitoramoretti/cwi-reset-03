@@ -49,8 +49,8 @@ public class PetService {
         return petRepository.save(pet);
     }
 
-    public List<Pet> findByEspecieNomeIgnoringCase(String nomeEspecie) {
-        return petRepository.findByEspecieNomeIgnoringCase(nomeEspecie);
+    public List<Pet> findByEspecie(String nome) {
+        return petRepository.findByEspecieNomeIgnoringCase(nome);
     }
 
     public List<Pet> findAll() {
