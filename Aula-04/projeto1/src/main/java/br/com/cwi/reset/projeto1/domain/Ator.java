@@ -15,6 +15,14 @@ public class Ator extends Pessoa {
         this.numeroOscars = numeroOscars;
     }
 
+    public Integer getNumeroOscars() {
+        return numeroOscars;
+    }
+
+    public void setNumeroOscars(Integer numeroOscars) {
+        this.numeroOscars = numeroOscars;
+    }
+
     public Ator() {
 
     }

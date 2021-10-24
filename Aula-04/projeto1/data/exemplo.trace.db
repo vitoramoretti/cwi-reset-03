@@ -1,3 +1,10 @@
-2021-10-23 16:28:12 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM PET PET PET[*]"; SQL statement:
-SELECT * FROM PET PET PET [42000-200]
+2021-10-24 17:05:38 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM ATOR ,
+SELECT[*] * FROM PESSOA"; expected "identifier"; SQL statement:
+SELECT * FROM ATOR ,
+SELECT * FROM PESSOA [42001-200]
+2021-10-24 17:05:44 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM ATOR,
+SELECT[*] * FROM PESSOA"; expected "identifier"; SQL statement:
+SELECT * FROM ATOR,
+SELECT * FROM PESSOA [42001-200]

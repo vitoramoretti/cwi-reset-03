@@ -31,19 +31,25 @@ public class AtorController {
     }
 
     @GetMapping("/{name}")
-    public Ator getByName(@PathVariable String name) throws AtorDoesNotExistException {
-        return atorService.findByName(name);
+    public Ator getByNome(@PathVariable String name) throws AtorDoesNotExistException {
+        return atorService.findByNome(name);
     }
 
     @GetMapping("/{numeroOscars}")
-    public Ator getByNumeroOscars(@PathVariable String numeroOscars) throws AtorDoesNotExistException {
+    public List<Ator> getByNumeroOscars(@PathVariable Integer numeroOscars) throws AtorDoesNotExistException {
         return atorService.findByNumeroOscars(numeroOscars);
     }
 
     @DeleteMapping("/{name}")
     public void deleteAtor(@PathVariable String name) throws AtorDoesNotExistException {
-        AtorService.delete(name);
+        atorService.delete(name);
+    }
+
+    @PutMapping
+    public Ator update(@RequestBody Ator ator) throws AtorDoesNotExistException {
+        return atorService.update(ator);
     }
 
 
 }
+
