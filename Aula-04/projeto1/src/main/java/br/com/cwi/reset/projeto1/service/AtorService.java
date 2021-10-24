@@ -1,14 +1,13 @@
 package br.com.cwi.reset.projeto1.service;
 
 import br.com.cwi.reset.projeto1.domain.Ator;
-import br.com.cwi.reset.projeto1.domain.Pet;
 import br.com.cwi.reset.projeto1.exception.AtorDoesNotExistException;
 import br.com.cwi.reset.projeto1.exception.AtorExistsException;
-import br.com.cwi.reset.projeto1.exception.PetDoesNotExistException;
 import br.com.cwi.reset.projeto1.repository.AtorRepositoryDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -53,6 +52,11 @@ public class AtorService {
 
     public List<Ator> findByNumeroOscars (Integer numeroOscars) {
         return atorRepository.findByNumeroOscars(numeroOscars);
+    }
+
+    public List<Ator> searchByFilter(Integer oscars, Integer anoNascimento) {
+        LocalDate dataNascimento = LocalDate.of(anoNascimento, 1, 1);
+        return atorRepository.findByNumeroOscarsGreaterThanAndDataNascimentoGreaterThan((oscars - 1), dataNascimento);
     }
 
     public List<Ator> findAll() {

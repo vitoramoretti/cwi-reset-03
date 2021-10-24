@@ -4,6 +4,7 @@ import br.com.cwi.reset.projeto1.domain.Ator;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -14,5 +15,8 @@ public interface AtorRepositoryDb extends CrudRepository<Ator, Integer> {
     List<Ator> findAll();
 
     List<Ator> findByNumeroOscars (Integer numeroOscars);
+
+    List<Ator> findByNumeroOscarsGreaterThanAndDataNascimentoGreaterThan (Integer numeroOscars, LocalDate anoNascimento);
+
 
 }

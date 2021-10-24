@@ -40,6 +40,11 @@ public class AtorController {
         return atorService.findByNumeroOscars(numeroOscars);
     }
 
+    @GetMapping("/by-filter")
+    public List<Ator> searchByFilter(@RequestParam Integer numeroOscars, Integer anoNascimento) {
+        return atorService.searchByFilter(numeroOscars, anoNascimento);
+    }
+
     @DeleteMapping("/{name}")
     public void deleteAtor(@PathVariable String name) throws AtorDoesNotExistException {
         atorService.delete(name);
