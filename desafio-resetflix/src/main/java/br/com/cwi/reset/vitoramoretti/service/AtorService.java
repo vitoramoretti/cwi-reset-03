@@ -42,7 +42,7 @@ public class AtorService {
         fakeDatabase.persisteAtor(ator);
     }
 
-    public List<AtorEmAtividade> listarAtoresEmAtividade(String filtroNome) throws Exception {
+    public List<AtorEmAtividade> listarAtoresEmAtividade(String filterNome) throws Exception {
         final List<Ator> atoresCadastrados = fakeDatabase.recuperaAtores();
 
         if (atoresCadastrados.isEmpty()) {
@@ -51,9 +51,9 @@ public class AtorService {
 
         final List<AtorEmAtividade> retorno = new ArrayList<>();
 
-        if (filtroNome != null) {
+        if (filterNome != null) {
             for (Ator ator : atoresCadastrados) {
-                final boolean containsFilter = ator.getNome().toLowerCase(Locale.ROOT).contains(filtroNome.toLowerCase(Locale.ROOT));
+                final boolean containsFilter = ator.getNome().toLowerCase(Locale.ROOT).contains(filterNome.toLowerCase(Locale.ROOT));
                 final boolean emAtividade = StatusCarreira.EM_ATIVIDADE.equals(ator.getStatusCarreira());
                 if (containsFilter && emAtividade) {
                     retorno.add(new AtorEmAtividade(ator.getId(), ator.getNome(), ator.getDataNascimento()));
@@ -69,7 +69,7 @@ public class AtorService {
         }
 
         if (retorno.isEmpty()) {
-            throw new FiltroNomeNaoEncontrado("Ator", filtroNome);
+            throw new FiltroNomeNaoEncontrado("Ator", filterNome);
         }
 
         return retorno;
@@ -87,7 +87,6 @@ public class AtorService {
                 return ator;
             }
         }
-
         throw new ConsultaIdInvalidoException(TipoDominioException.ATOR.getSingular(), id);
     }
 
@@ -100,4 +99,5 @@ public class AtorService {
 
         return atores;
     }
+
 }

@@ -36,7 +36,7 @@ public class DiretorService {
         fakeDatabase.persisteDiretor(diretor);
     }
 
-    public List<Diretor> listarDiretores(final String filtroNome) throws Exception {
+    public List<Diretor> listarDiretores(final String filterNome) throws Exception {
         final List<Diretor> diretoresCadastrados = fakeDatabase.recuperaDiretores();
 
         if (diretoresCadastrados.isEmpty()) {
@@ -45,9 +45,9 @@ public class DiretorService {
 
         final List<Diretor> retorno = new ArrayList<>();
 
-        if (filtroNome != null) {
+        if (filterNome != null) {
             for (Diretor diretor : diretoresCadastrados) {
-                final boolean containsFilter = diretor.getNome().toLowerCase(Locale.ROOT).contains(filtroNome.toLowerCase(Locale.ROOT));
+                final boolean containsFilter = diretor.getNome().toLowerCase(Locale.ROOT).contains(filterNome.toLowerCase(Locale.ROOT));
                 if (containsFilter) {
                     retorno.add(diretor);
                 }
@@ -57,7 +57,7 @@ public class DiretorService {
         }
 
         if (retorno.isEmpty()) {
-            throw new FiltroNomeNaoEncontrado("Diretor", filtroNome);
+            throw new FiltroNomeNaoEncontrado("Diretor", filterNome);
         }
 
         return retorno;
@@ -78,4 +78,5 @@ public class DiretorService {
 
         throw new ConsultaIdInvalidoException(TipoDominioException.DIRETOR.getSingular(), id);
     }
+
 }
