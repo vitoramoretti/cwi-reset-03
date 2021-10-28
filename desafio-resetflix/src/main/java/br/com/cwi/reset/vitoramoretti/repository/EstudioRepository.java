@@ -13,5 +13,5 @@ public interface EstudioRepository extends CrudRepository<Estudio, Integer> {
 
     List<Estudio> findAll();
 
-//    List<Estudio> findEstudioById();
+    List<Estudio> findEstudioById(Integer id);
 }

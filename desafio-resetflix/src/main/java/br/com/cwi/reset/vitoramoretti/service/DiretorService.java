@@ -4,8 +4,8 @@ import br.com.cwi.reset.vitoramoretti.exception.*;
 import br.com.cwi.reset.vitoramoretti.model.Diretor;
 import br.com.cwi.reset.vitoramoretti.repository.DiretorRepository;
 import br.com.cwi.reset.vitoramoretti.request.DiretorRequest;
-import br.com.cwi.reset.vitoramoretti.FakeDatabase;
 import br.com.cwi.reset.vitoramoretti.validator.BasicInfoRequiredValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ public class DiretorService {
 
     private DiretorRepository diretorRepository;
 
+    @Autowired
     public DiretorService(DiretorRepository diretorRepository) {
         this.diretorRepository = diretorRepository;
     }

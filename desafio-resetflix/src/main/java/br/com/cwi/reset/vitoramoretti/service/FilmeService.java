@@ -1,7 +1,8 @@
 package br.com.cwi.reset.vitoramoretti.service;
 
-import br.com.cwi.reset.vitoramoretti.FakeDatabase;
+
 import br.com.cwi.reset.vitoramoretti.exception.*;
+import br.com.cwi.reset.vitoramoretti.model.Diretor;
 import br.com.cwi.reset.vitoramoretti.model.Filme;
 import br.com.cwi.reset.vitoramoretti.model.Genero;
 import br.com.cwi.reset.vitoramoretti.model.PersonagemAtor;
@@ -24,7 +25,7 @@ public class FilmeService {
     private PersonagemAtorService personagemAtorService;
 
     @Autowired
-    public FilmeService(FilmeRepository filmeRepository) {
+    public FilmeService(FilmeRepository filmeRepository, EstudioService estudioService, DiretorService diretorService, PersonagemAtorService personagemAtorService) {
         this.filmeRepository = filmeRepository;
         this.estudioService = estudioService;
         this.diretorService = diretorService;
@@ -65,7 +66,6 @@ public class FilmeService {
                 generoSet.add(genero);
             }
         }
-        final Integer idGerado = filmesCadastrados.size() + 1;
 
         final Filme filme = new Filme(
                 filmeRequest.getNome(),

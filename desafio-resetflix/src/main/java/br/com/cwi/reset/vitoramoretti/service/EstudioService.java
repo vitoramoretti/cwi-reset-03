@@ -1,6 +1,5 @@
 package br.com.cwi.reset.vitoramoretti.service;
 
-import br.com.cwi.reset.vitoramoretti.FakeDatabase;
 import br.com.cwi.reset.vitoramoretti.exception.*;
 import br.com.cwi.reset.vitoramoretti.model.Estudio;
 import br.com.cwi.reset.vitoramoretti.repository.EstudioRepository;
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
+
 
 @Service
 public class EstudioService {
@@ -70,14 +69,28 @@ public class EstudioService {
     }
 
     public Estudio consultarEstudio(Integer id) throws Exception {
-        Optional idCheck = estudioRepository.findById(id);
 
-        if (id != null) {
+        if (id == null) {
             throw new IdNaoInformado();
-        } else if (idCheck.equals(id)) {
-            return null;
         }
-        return null;
-//        return fakeDatabase.recuperaEstudios().stream().filter(e -> e.getId().equals(id)).findFirst().orElseThrow(() -> new ConsultaIdInvalidoException(TipoDominioException.ESTUDIO.getSingular(), id));
+
+        final List<Estudio> estudios = estudioRepository.findAll();
+
+        for (Estudio estudio : estudios) {
+            if (estudio.getId().equals(id)) {
+                return estudio;
+            }
+        }
+
+        throw new ConsultaIdInvalidoException(TipoDominioException.ESTUDIO.getSingular(), id);
     }
+
+//        List<Estudio> estudios = estudioRepository.findAll();
+//
+//        if (id != null) {
+//            throw new IdNaoInformado();
+//        }
+//        return estudios.stream().filter(e -> e.getId().equals(id)).findFirst();
+//        return fakeDatabase.recuperaEstudios().stream().filter(e -> e.getId().equals(id)).findFirst().orElseThrow(() -> new ConsultaIdInvalidoException(TipoDominioException.ESTUDIO.getSingular(), id));
+//    }
 }
