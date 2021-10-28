@@ -4,6 +4,7 @@ import br.com.cwi.reset.vitoramoretti.FakeDatabase;
 import br.com.cwi.reset.vitoramoretti.model.Estudio;
 import br.com.cwi.reset.vitoramoretti.request.EstudioRequest;
 import br.com.cwi.reset.vitoramoretti.service.EstudioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +16,9 @@ public class EstudioController {
 
     private EstudioService estudioService;
 
-    public EstudioController() {
-        this.estudioService = new EstudioService(FakeDatabase.getInstance());
+    @Autowired
+    public EstudioController(EstudioService estudioService) {
+        this.estudioService = estudioService;
     }
 
     @GetMapping
@@ -34,5 +36,7 @@ public class EstudioController {
     public void criarEstudio(@RequestBody EstudioRequest estudioRequest) throws Exception {
         estudioService.criarEstudio(estudioRequest);
     }
+
+
 
 }

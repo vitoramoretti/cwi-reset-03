@@ -5,6 +5,7 @@ import br.com.cwi.reset.vitoramoretti.FakeDatabase;
 import br.com.cwi.reset.vitoramoretti.model.Diretor;
 import br.com.cwi.reset.vitoramoretti.request.DiretorRequest;
 import br.com.cwi.reset.vitoramoretti.service.DiretorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +17,9 @@ public class DiretorController {
 
     private DiretorService diretorService;
 
-    public DiretorController() {
-        this.diretorService = new DiretorService(FakeDatabase.getInstance());
+    @Autowired
+    public DiretorController(DiretorService diretorService) {
+        this.diretorService = diretorService;
     }
 
     @GetMapping
@@ -35,4 +37,6 @@ public class DiretorController {
     public void cadastrarDiretor(@RequestBody DiretorRequest diretorRequest) throws Exception {
         this.diretorService.cadastrarDiretor(diretorRequest);
     }
+
+
 }

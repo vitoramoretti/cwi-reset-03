@@ -3,43 +3,37 @@ package br.com.cwi.reset.vitoramoretti.service;
 import br.com.cwi.reset.vitoramoretti.FakeDatabase;
 import br.com.cwi.reset.vitoramoretti.exception.*;
 import br.com.cwi.reset.vitoramoretti.model.Filme;
+import br.com.cwi.reset.vitoramoretti.model.Genero;
 import br.com.cwi.reset.vitoramoretti.model.PersonagemAtor;
+import br.com.cwi.reset.vitoramoretti.repository.FilmeRepository;
+import br.com.cwi.reset.vitoramoretti.repository.PersonagemAtorRepository;
 import br.com.cwi.reset.vitoramoretti.request.FilmeRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
+import java.util.*;
+
+@Service
 public class FilmeService {
 
-    private FakeDatabase fakeDatabase;
+    private FilmeRepository filmeRepository;
+
     private EstudioService estudioService;
     private DiretorService diretorService;
     private PersonagemAtorService personagemAtorService;
 
-    public FilmeService(FakeDatabase fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-        this.estudioService = new EstudioService(fakeDatabase);
-        this.diretorService = new DiretorService(fakeDatabase);
-        this.personagemAtorService = new PersonagemAtorService(fakeDatabase);
+    @Autowired
+    public FilmeService(FilmeRepository filmeRepository) {
+        this.filmeRepository = filmeRepository;
+        this.estudioService = estudioService;
+        this.diretorService = diretorService;
+        this.personagemAtorService = personagemAtorService;
     }
 
     // Registers a new movie in the DB
     public void criarFilme(FilmeRequest filmeRequest) throws Exception {
-        final List<Filme> savedFilmes = fakeDatabase.recuperaFilmes();
-        final Integer generatedId = savedFilmes.size() + 1;
-
-        final Filme filme = new Filme(
-                generatedId,
-                filmeRequest.getNome(),
-                filmeRequest.getAnoLancamento(),
-                filmeRequest.getCapaFilme(),
-                filmeRequest.getGeneros(),
-                diretorService.consultarDiretor(filmeRequest.getIdDiretor()),
-                estudioService.consultarEstudio(filmeRequest.getIdEstudio()),
-                personagemAtorService.createPersonagensFilme(filmeRequest.getPersonagens()),
-                filmeRequest.getResumo()
-        );
+        final List<Filme> filmesCadastrados = filmeRepository.findAll();
 
         if (filmeRequest.getNome() == null) {
             throw new NomeNaoInformadoException();
@@ -53,29 +47,50 @@ public class FilmeService {
             throw new CapaFilmeNaoInformadaException();
         }
 
-        if (filmeRequest.getGeneros().isEmpty()) {
-            throw new UniversalUseException("Deve ser informado pelo menos um gênero para o cadastro do filme.");
+        if (filmeRequest.getGeneros() == null) {
+            throw new GeneroNaoInformadoException();
+            // ("Deve ser informado pelo menos um gênero para o cadastro do filme.")
         }
 
         if (filmeRequest.getResumo() == null) {
             throw new ResumoNaoInformadoException();
         }
 
-        // Implement here -> logic for not repeating movie category
+        final Set<Genero> generoSet = new HashSet<>();
 
-        fakeDatabase.persisteFilme(filme);
+        for (Genero genero : filmeRequest.getGeneros()) {
+            if (generoSet.contains(genero)) {
+                throw new UniversalUseException("Não é permitido informar o mesmo gênero mais de uma vez para o mesmo filme.");
+            } else {
+                generoSet.add(genero);
+            }
+        }
+        final Integer idGerado = filmesCadastrados.size() + 1;
+
+        final Filme filme = new Filme(
+                filmeRequest.getNome(),
+                filmeRequest.getAnoLancamento(),
+                filmeRequest.getCapaFilme(),
+                filmeRequest.getGeneros(),
+                estudioService.consultarEstudio(filmeRequest.getIdEstudio()),
+                diretorService.consultarDiretor(filmeRequest.getIdDiretor()),
+                personagemAtorService.cadastrarPersonagensFilme(filmeRequest.getPersonagens()),
+                filmeRequest.getResumo());
+
+        filmeRepository.save(filme);
     }
+
 
     // Lists all the movies in the DB
     public List<Filme> consultarFilmes(String nomeFilme, String nomeDiretor, String nomeAtor, String nomePersonagem) throws Exception {
-        final List<Filme> savedFilmes = fakeDatabase.recuperaFilmes();
+        final List<Filme> filmesCadastrados = filmeRepository.findAll();
 
-        if (savedFilmes.isEmpty()) {
+        if (filmesCadastrados.isEmpty()) {
             throw new ListaVaziaException(TipoDominioException.FILME.getSingular(), TipoDominioException.FILME.getPlural());
         }
 
         // Additional filters:
-        final List<Filme> filterByNomePersonagem = filterByNomePersonagem(savedFilmes, nomePersonagem);
+        final List<Filme> filterByNomePersonagem = filterByNomePersonagem(filmesCadastrados, nomePersonagem);
         final List<Filme> filterByNomeAtor = filterByNomeAtor(filterByNomePersonagem, nomeAtor);
         final List<Filme> filterByNomeDiretor = filterByNomeDiretor(filterByNomeAtor, nomeDiretor);
         final List<Filme> finalFilter = filterByNomeFilme(filterByNomeDiretor, nomeFilme);

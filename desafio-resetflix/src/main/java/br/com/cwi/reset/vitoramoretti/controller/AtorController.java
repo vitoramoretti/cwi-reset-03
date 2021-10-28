@@ -5,19 +5,21 @@ import br.com.cwi.reset.vitoramoretti.model.Ator;
 import br.com.cwi.reset.vitoramoretti.request.AtorRequest;
 import br.com.cwi.reset.vitoramoretti.response.AtorEmAtividade;
 import br.com.cwi.reset.vitoramoretti.service.AtorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("atores")
+@RequestMapping("/atores")
 public class AtorController {
 
     private AtorService atorService;
 
-    public AtorController() {
-        this.atorService = new AtorService(FakeDatabase.getInstance());
+    @Autowired
+    public AtorController(AtorService atorService) {
+        this.atorService = atorService;
     }
 
     @GetMapping
@@ -40,4 +42,6 @@ public class AtorController {
     public void criarAtor(@RequestBody AtorRequest atorRequest) throws Exception {
         this.atorService.criarAtor(atorRequest);
     }
+
+
 }
