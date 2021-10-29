@@ -23,9 +23,9 @@ public class PersonagemAtorService {
     private AtorService atorService;
 
     @Autowired
-    public PersonagemAtorService(PersonagemAtorRepository personagemAtorRepository) {
+    public PersonagemAtorService(PersonagemAtorRepository personagemAtorRepository, AtorService atorService) {
         this.personagemAtorRepository = personagemAtorRepository;
-        //this.atorService = new AtorService(AtorRepository);
+        this.atorService = atorService;
     }
 
     public PersonagemAtor cadastrarPersonagemAtor(PersonagemRequest personagemRequest) throws Exception {

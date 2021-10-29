@@ -24,10 +24,10 @@ public class FilmeController {
 
     @GetMapping
     public List<Filme> consultarFilmes(
-            @RequestParam String nomeFilme,
-            @RequestParam String nomeDiretor,
-            @RequestParam String nomeAtor,
-            @RequestParam String nomePersonagem) throws Exception {
+            @RequestParam(required = false) String nomeFilme,
+            @RequestParam(required = false) String nomeDiretor,
+            @RequestParam(required = false) String nomeAtor,
+            @RequestParam(required = false) String nomePersonagem) throws Exception {
         return this.filmeService.consultarFilmes(nomeFilme, nomeDiretor, nomeAtor, nomePersonagem);
     }
 
